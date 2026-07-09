@@ -1,0 +1,1345 @@
+/* ============================================
+   DESIGN TOKENS - CSS CUSTOM PROPERTIES
+   ============================================ */
+
+:root {
+  /* Color palette - Light theme (#FFFFFF #E4EBEE #C1C9CD #90979C #51565A #151515) */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --border: 200 11% 78%;
+  --input: 200 11% 78%;
+  
+  --primary: 0 0% 8%;
+  --primary-foreground: 0 0% 100%;
+  
+  --muted: 200 14% 91%;
+  --muted-foreground: 210 6% 59%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --ring: 210 5% 34%;
+  
+  /* Category colors */
+  --food: 142 71% 45%;
+  --transport: 221 83% 53%;
+  --fun: 280 65% 60%;
+  
+  /* Spacing */
+  --radius: 0.5rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06);
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 12px 28px -8px rgb(0 0 0 / 0.12);
+}
+
+[data-theme="dark"] {
+  /* Color palette - Dark theme (inverted: #151515 #51565A #90979C #C1C9CD #E4EBEE) */
+  --background: 0 0% 8%;
+  --foreground: 200 14% 91%;
+  --card: 0 0% 11%;
+  --card-foreground: 200 14% 91%;
+  --border: 210 5% 34%;
+  --input: 210 5% 34%;
+  
+  --primary: 200 14% 91%;
+  --primary-foreground: 0 0% 8%;
+  
+  --muted: 210 5% 20%;
+  --muted-foreground: 210 6% 59%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --ring: 200 11% 78%;
+}
+
+/* ============================================
+   BASE RESET & TYPOGRAPHY
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   FULL-WIDTH CONTAINER
+   ============================================ */
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 2rem;
+  }
+}
+
+/* ============================================
+   COMPONENT STYLES - BUTTONS
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  min-height: 44px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.btn-outline {
+  border-color: hsl(var(--border));
+  background-color: transparent;
+  color: hsl(var(--foreground));
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: hsl(var(--muted));
+}
+
+.btn-destructive {
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+}
+
+.btn-destructive:hover:not(:disabled) {
+  background-color: hsl(var(--destructive) / 0.9);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: hsl(var(--foreground));
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background-color: hsl(var(--muted));
+}
+
+/* ============================================
+   COMPONENT STYLES - INPUT FIELDS
+   ============================================ */
+
+.input {
+  display: flex;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  min-height: 44px;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--input));
+  background-color: transparent;
+  color: hsl(var(--foreground));
+  font-size: 0.875rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input-error {
+  border-color: hsl(var(--destructive));
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 2px hsl(var(--destructive) / 0.2);
+}
+
+select.input {
+  cursor: pointer;
+  appearance: none;
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23999' stroke-width='2' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+select.input option {
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+}
+
+/* ============================================
+   COMPONENT STYLES - CARDS
+   ============================================ */
+
+.card {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+}
+
+.bento-card .card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: hsl(var(--ring) / 0.15);
+}
+
+.main-content {
+  padding: 0.5rem 1rem 3rem;
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding: 0.75rem 1.5rem 4rem;
+  }
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.monthly-summary {
+  min-height: 60px;
+}
+
+.category-management {
+  margin-top: 1.5rem;
+}
+
+.card-header {
+  margin-bottom: 0.75rem;
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.card-content {
+  display: block;
+}
+
+.card-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid hsl(var(--border));
+}
+
+/* ============================================
+   COMPONENT STYLES - BADGES
+   ============================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: calc(var(--radius) * 0.75);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge-food {
+  background-color: hsl(var(--food) / 0.1);
+  color: hsl(var(--food));
+}
+
+.badge-transport {
+  background-color: hsl(var(--transport) / 0.1);
+  color: hsl(var(--transport));
+}
+
+.badge-fun {
+  background-color: hsl(var(--fun) / 0.1);
+  color: hsl(var(--fun));
+}
+
+.badge-default {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+}
+
+/* ============================================
+   COMPONENT STYLES - TOGGLE SWITCH
+   ============================================ */
+
+.toggle {
+  position: relative;
+  width: 42px;
+  height: 22px;
+  min-height: 22px;
+  background-color: hsl(var(--muted-foreground) / 0.25);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.toggle:hover {
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.1);
+}
+
+.toggle:active {
+  transform: scale(0.92);
+}
+
+.toggle.active {
+  background-color: hsl(var(--primary));
+  animation: toggleGlow 0.45s ease-out;
+}
+
+@keyframes toggleGlow {
+  0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.35); }
+  100% { box-shadow: 0 0 0 10px hsl(var(--primary) / 0); }
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background-color: hsl(var(--background));
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
+}
+
+.toggle.active .toggle-thumb {
+  transform: translateX(19px);
+}
+
+/* ============================================
+   COMPONENT STYLES - MODAL/DIALOG
+   ============================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: hsl(0 0% 0% / 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+  animation: overlayIn 0.15s ease-out;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalIn 0.2s ease-out;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.modal-content {
+  display: block;
+}
+
+.modal-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* ============================================
+   COMPONENT STYLES - FORM FIELDS
+   ============================================ */
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: hsl(var(--foreground));
+}
+
+.error-message {
+  display: block;
+  font-size: 0.75rem;
+  color: hsl(var(--destructive));
+  margin-top: 0.25rem;
+  min-height: 1rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.error-message.visible {
+  opacity: 1;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-muted {
+  color: hsl(var(--muted-foreground));
+}
+
+.text-destructive {
+  color: hsl(var(--destructive));
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* ============================================
+   RESPONSIVE GRID
+   ============================================ */
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   TOUCH TARGET COMPLIANCE
+   ============================================ */
+
+/* Ensure minimum touch targets for mobile */
+.btn,
+.input,
+button,
+select {
+  min-height: 44px;
+}
+
+@media (min-width: 768px) {
+  .btn,
+  .input,
+  button,
+  select {
+    min-height: 40px;
+  }
+}
+/* ============================================
+   APPLICATION LAYOUT - HEADER
+   ============================================ */
+
+.header {
+  padding: 0.75rem 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}   
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0;
+  color: hsl(var(--foreground));
+}
+
+@media (min-width: 640px) {
+  .header {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+
+  .header-title {
+    font-size: 1.25rem;
+  }
+
+  .header-content {
+    padding: 0.85rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 1.25rem 2rem;
+  }
+}
+
+/* ============================================
+   BENTO GRID LAYOUT
+   ============================================ */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bento-balance {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .bento-chart {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .bento-form {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .bento-settings {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .bento-list {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  .bento-monthly {
+    grid-column: 1 / -1;
+    grid-row: 4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .bento-balance {
+    grid-column: 1;
+    grid-row: 1/3;
+  }
+
+  .bento-chart {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .bento-form {
+    grid-column: 2/4;
+    grid-row: 2;
+  }
+
+  .bento-settings {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .bento-list {
+    grid-column: 1 / 3;
+    grid-row: 3;
+  }
+
+  .bento-monthly {
+    grid-column: 3;
+    grid-row: 3;
+  }
+}
+
+.bento-card .card {
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.bento-card .card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ============================================
+   APPLICATION LAYOUT - BALANCE DISPLAY
+   ============================================ */
+
+.bento-balance .card {
+  padding: 2rem;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.bento-balance .card.warning {
+  border-color: hsl(var(--destructive));
+  box-shadow: 0 0 0 3px hsl(var(--destructive) / 0.1), var(--shadow-sm);
+  background: linear-gradient(135deg, hsl(var(--destructive) / 0.1), hsl(var(--destructive) / 0.05));
+}
+
+.balance-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.balance-amount {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: hsl(var(--foreground));
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.balance-limit-info {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.balance-warning {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: hsl(var(--destructive) / 0.1);
+  border-radius: var(--radius);
+  color: hsl(var(--destructive));
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.card-header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .bento-balance .card {
+    padding: 2rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-balance .card {
+    padding: 2.5rem 3rem;
+  }
+  
+  .balance-amount {
+    font-size: 3.5rem;
+  }
+}
+
+/* ============================================
+   FORM GRID & FULL WIDTH BUTTON
+   ============================================ */
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-field {
+    margin-bottom: 0;
+  }
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   APPLICATION LAYOUT - TRANSACTION LIST
+   ============================================ */
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 0.25rem;
+  padding-right: 1.5rem;
+}
+
+.transaction-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.transaction-list::-webkit-scrollbar-track {
+  background: hsl(var(--muted) / 0.3);
+  border-radius: 4px;
+}
+
+.transaction-list::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+.transaction-list::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.transaction-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  border-color: hsl(var(--ring) / 0.1);
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-item-name {
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transaction-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.transaction-amount {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.transaction-date {
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.transaction-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.transaction-delete-btn {
+  min-width: 44px;
+  padding: 0.5rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9rem;
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state-text {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .transaction-item {
+    padding: 1.25rem;
+  }
+  
+  .transaction-info {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .transaction-meta {
+    gap: 1rem;
+  }
+}
+
+/* ============================================
+   APPLICATION LAYOUT - CHART CONTAINER
+   ============================================ */
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.chart-empty-msg {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin: 0;
+}
+
+canvas#expenseChart {
+  max-width: 280px;
+  max-height: 280px;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  canvas#expenseChart {
+    max-width: 320px;
+    max-height: 320px;
+  }
+}
+
+/* ============================================
+   APPLICATION LAYOUT - MONTHLY SUMMARY
+   ============================================ */
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.month-nav-btn {
+  background: none;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  color: hsl(var(--foreground));
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.375rem 0.625rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.month-nav-btn:hover:not(:disabled) {
+  background-color: hsl(var(--muted));
+  border-color: hsl(var(--ring));
+}
+
+.month-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.month-nav-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  flex: 1;
+}
+
+.month-nav-total {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: hsl(var(--primary));
+}
+
+.category-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.category-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background-color: hsl(var(--muted) / 0.3);
+  border-radius: calc(var(--radius) * 0.75);
+}
+
+.category-row-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-row-amount {
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+/* ============================================
+   APPLICATION LAYOUT - SETTINGS FORM
+   ============================================ */
+
+.settings-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.75rem;
+}
+
+/* ============================================
+   APPLICATION LAYOUT - FOOTER
+   ============================================ */
+
+.footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid hsl(var(--border));
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+}
+
+/* ============================================
+   APPLICATION LAYOUT - CONFIRMATION DIALOG
+   ============================================ */
+
+/* ============================================
+   UTILITY - SORT SELECT
+   ============================================ */
+
+.select-sm {
+  min-width: 160px;
+  font-size: 0.875rem;
+  min-height: 36px;
+}
+
+/* ============================================
+   UTILITY - SCREEN READER ONLY
+   ============================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================
+   SETTINGS - DIVIDER & HELP
+   ============================================ */
+
+.settings-divider {
+  height: 1px;
+  background-color: hsl(var(--border));
+  margin: 1.5rem 0;
+}
+
+.form-help {
+  display: block;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.25rem;
+}
+
+/* ============================================
+   RESPONSIVE - MONTHLY SUMMARY
+   ============================================ */
+
+@media (max-width: 639px) {
+  .month-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .month-total {
+    font-size: 1.125rem;
+  }
+
+  .category-breakdown {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - BALANCE AMOUNT (MOBILE)
+   ============================================ */
+
+@media (max-width: 639px) {
+  .balance-amount {
+    font-size: 2rem;
+    word-break: break-word;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - TRANSACTION ITEMS (MOBILE)
+   ============================================ */
+
+@media (max-width: 639px) {
+  .transaction-item {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .transaction-info {
+    width: 100%;
+  }
+
+  .transaction-actions {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+  }
+
+  .transaction-meta {
+    flex-wrap: wrap;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - SETTINGS (MOBILE)
+   ============================================ */
+
+@media (max-width: 639px) {
+.input-group {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group .btn {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .input-group {
+    flex-direction: row;
+  }
+
+  .input-group .btn {
+    width: auto;
+    flex-shrink: 0;
+  }
+}
+}
